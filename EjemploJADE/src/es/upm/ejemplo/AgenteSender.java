@@ -23,7 +23,7 @@ public class AgenteSender extends Agent {
 		this.send(msg);
 		System.out.println("Mensaje Enviado....");
 		
-		addBehaviour(new ResponderBehaviourMio(this));
+		//addBehaviour(new ResponderBehaviourMio(this));
 
 	}
 }

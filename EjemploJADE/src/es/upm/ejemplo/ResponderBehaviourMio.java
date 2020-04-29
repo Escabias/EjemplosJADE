@@ -6,7 +6,7 @@ import jade.core.behaviours.*;
 
 public class ResponderBehaviourMio extends SimpleBehaviour {
 
-	//Establecemos un filtro para leer mensajes de tipo REQUEST
+	//Establecemos una mascara
 	private static final MessageTemplate mt1 = 
 			MessageTemplate.or(MessageTemplate.MatchPerformative(ACLMessage.REQUEST), 
 			MessageTemplate.MatchPerformative(ACLMessage.INFORM));
@@ -32,7 +32,9 @@ public class ResponderBehaviourMio extends SimpleBehaviour {
 					 mr.setContent("Respuesta al mensaje");
 					 mr.setPerformative(ACLMessage.INFORM);
 					 myAgent.send(mr);
-				} else {
+				} 
+				/*
+				else {
 					if (aclMessage.getPerformative()== ACLMessage.INFORM){
 						System.out.println();
 						System.out.println(myAgent.getLocalName()+": Recibo el mensaje:\n"+aclMessage);
@@ -42,6 +44,7 @@ public class ResponderBehaviourMio extends SimpleBehaviour {
 						myAgent.send(mr);
 					}
 				}
+				*/
 
 			} else {
 				this.block();
