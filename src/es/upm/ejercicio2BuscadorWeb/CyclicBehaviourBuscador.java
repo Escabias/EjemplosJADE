@@ -52,9 +52,9 @@ public class CyclicBehaviourBuscador extends CyclicBehaviour {
 	public List<String> buscarCadena(String cadena)
 	{
 		//Definimos la lista de sitios web que vamos a utilizar
-		String
-		sitios[]={"http://www.dia.fi.upm.es/masteria/","http://www.upm.es","http://www.fi.upm.es","https://www.elmundo.es","https://www.elpais.com"};
-				List<String> lista=new ArrayList<String>();
+		String sitios[]={"http://www.dia.fi.upm.es/masteria/","http://www.upm.es",
+				"http://www.fi.upm.es","https://www.elmundo.es","https://www.elpais.com"};
+		List<String> lista=new ArrayList<String>();
 		Scanner scanner;
 		String texto, temp;
 		//Buscamos en cada una de las páginas web si hay coincidencia con el texto que ha enviado el cliente
