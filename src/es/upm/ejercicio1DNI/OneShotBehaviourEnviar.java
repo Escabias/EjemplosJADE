@@ -1,8 +1,8 @@
 package es.upm.ejercicio1DNI;
 
-import jade.core.behaviours.OneShotBehaviour;
 import java.util.Scanner;
-import jade.core.behaviours.CyclicBehaviour;
+
+import jade.core.behaviours.OneShotBehaviour;
 
 public class OneShotBehaviourEnviar extends OneShotBehaviour {
 

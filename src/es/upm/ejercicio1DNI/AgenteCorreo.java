@@ -1,8 +1,7 @@
 package es.upm.ejercicio1DNI;
 
-import jade.core.Agent;
-import jade.core.behaviours.*;
 import jade.content.lang.sl.SLCodec;
+import jade.core.Agent;
 import jade.domain.DFService;
 import jade.domain.FIPAException;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
