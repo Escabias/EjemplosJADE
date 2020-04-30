@@ -23,8 +23,7 @@ public class Utils {
 	 * @param agent Agente con el que se realiza la búsqueda
 	 * @param tipo Tipo de servidio buscado
 	 * @return Listado de agentes que proporciona el servicio */
-	protected static DFAgentDescription [] buscarAgentes(Agent agent, String tipo)
-	{
+	protected static DFAgentDescription[] buscarAgentes(Agent agent, String tipo) {
 		//indico las características el tipo de servicio que quiero encontrar
 		DFAgentDescription template=new DFAgentDescription();
 		ServiceDescription templateSd=new ServiceDescription();
@@ -32,13 +31,10 @@ public class Utils {
 		template.addServices(templateSd);
 		SearchConstraints sc = new SearchConstraints();
 		sc.setMaxResults(Long.MAX_VALUE);
-		try
-		{
+		try {
 			DFAgentDescription [] results = DFService.search(agent, template, sc);
 			return results;
-		}
-		catch(FIPAException e)
-		{
+		} catch(FIPAException e) {
 			JOptionPane.showMessageDialog(null, "Agente "+agent.getLocalName()+": "+e.getMessage(), "Error",
 					JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
@@ -50,14 +46,11 @@ public class Utils {
 	 * @param agent Agente desde el que se va a enviar el servicio
 	 * @param tipo Tipo del servicio buscado
 	 * @param objeto Mensaje a Enviar */
-	public static void enviarMensaje(Agent agent, String tipo, Object objeto)
-	{
+	public static void enviarMensaje(Agent agent, String tipo, Object objeto) {
 		DFAgentDescription[] dfd;
 		dfd=buscarAgentes(agent, tipo);
-		try
-		{
-			if(dfd!=null)
-			{
+		try {
+			if(dfd!=null) {
 				ACLMessage aclMessage = new ACLMessage(ACLMessage.REQUEST);
 				for(int i=0;i<dfd.length;i++)
 					aclMessage.addReceiver(dfd[i].getName());
@@ -69,8 +62,7 @@ public class Utils {
 				agent.send(aclMessage);
 			}
 		}
-		catch(IOException e)
-		{
+		catch(IOException e) {
 			JOptionPane.showMessageDialog(null, "Agente "+agent.getLocalName()+": "+e.getMessage(), "Error",
 					JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
@@ -81,8 +73,7 @@ public class Utils {
 	 * @param agent Agentes desde el que se realiza la búsqueda
 	 * @param tipo Tipo de servicio buscado
 	 * @return Primer agente que proporciona el servicio*/
-	protected static DFAgentDescription buscarAgente(Agent agent, String tipo)
-	{
+	protected static DFAgentDescription buscarAgente(Agent agent, String tipo) {
 		//indico las características el tipo de servicio que quiero encontrar
 		DFAgentDescription template=new DFAgentDescription();
 		ServiceDescription templateSd=new ServiceDescription();
@@ -90,37 +81,30 @@ public class Utils {
 		template.addServices(templateSd);
 		SearchConstraints sc = new SearchConstraints();
 		sc.setMaxResults(new Long(1));
-		try
-		{
+		try {
 			DFAgentDescription [] results = DFService.search(agent, template, sc);
-			if (results.length > 0)
-			{
+			if (results.length > 0) {
 				//System.out.println("Agente "+agent.getLocalName()+" encontro los siguientes agentes");
-				for (int i = 0; i < results.length; ++i)
-				{
+				for (int i = 0; i < results.length; ++i) {
 					DFAgentDescription dfd = results[i];
 					AID provider = dfd.getName();
 					//un mismo agente puede proporcionar varios servicios, solo estamos interasados en "tipo"
 					Iterator it = dfd.getAllServices();
-					while (it.hasNext())
-					{
+					while (it.hasNext()) {
 						ServiceDescription sd = (ServiceDescription) it.next();
-						if (sd.getType().equals(tipo))
-						{
+						if (sd.getType().equals(tipo)) {
 							System.out.println("- Servicio \""+sd.getName()+"\" proporcionado por el agente "+provider.getName());
 							return dfd;
 						}
 					}
 				}
 			}
-			else
-			{
+			else {
 				JOptionPane.showMessageDialog(null, "Agente "+agent.getLocalName()+" no encontro ningun servicio buscador", "Error",
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
-		catch(FIPAException e)
-		{
+		catch(FIPAException e) {
 			JOptionPane.showMessageDialog(null, "Agente "+agent.getLocalName()+": "+e.getMessage(), "Error",
 					JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();

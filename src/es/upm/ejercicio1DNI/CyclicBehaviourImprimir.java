@@ -13,14 +13,11 @@ public class CyclicBehaviourImprimir extends CyclicBehaviour {
 		msg=this.myAgent.blockingReceive(MessageTemplate.and(MessageTemplate.MatchPerformative(ACLMessage.REQUEST),
 				MessageTemplate.MatchOntology("ontologia")));
 		//Cuando llega un mensaje al agente que cumple las condiciones del filtro, se despierta e imprime el contenido en pantalla
-		try
-		{
+		try {
 			System.out.println("Soy el agente: " + myAgent.getName());
 			System.out.println("Recibo un mensaje del agente: " + msg.getSender().getName()+":"+
 					(String)msg.getContentObject());
-		}
-		catch (UnreadableException e)
-		{
+		} catch (UnreadableException e) {
 			e.printStackTrace();
 		}
 	}

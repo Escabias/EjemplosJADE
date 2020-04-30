@@ -11,8 +11,7 @@ public class OneShotBehaviourEnviar extends OneShotBehaviour {
 		Scanner scanner=new Scanner(System.in);
 		String mensaje;
 		//Leemos por pantalla y enviamos un mensaje al resto de agentes registrados. El envío debe estar implementado en Utils
-		while(true)
-		{
+		while(true) {
 			System.out.println("Introduzca su DNI: ");
 			mensaje=scanner.nextLine();
 			//mensaje=JOptionPane.showInputDialog("Introduzca su DNI");
@@ -22,8 +21,8 @@ public class OneShotBehaviourEnviar extends OneShotBehaviour {
 			//DNI: " + mensaje, "Información", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
-	public int onEnd()
-	{
+	@Override
+	public int onEnd() {
 		reset();
 		return super.onEnd();
 	}
